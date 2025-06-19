@@ -64,26 +64,21 @@ Detalhes da Avaria:
 - Tipo/Quantidade de Munição: ${dados.tipo_municao}
 
 Manutenção Preventiva:
-- Limpeza Periódica: ${dados.limpeza}
+- Realiza Limpeza Periódica?: ${dados.limpeza}
 - Frequência: ${dados.frequencia}
-- Produtos e Métodos: ${dados.produtos}
+- Produtos e/ou Equipamentos: ${dados.produtos}
 - Data da Última Limpeza: ${dados.ultima_limpeza}
 
 Dados do Policial:
 - Nome: ${dados.nome}
+- Cargo: ${dados.cargo}
 - RG: ${dados.rg}
 - Unidade: ${dados.unidade}
 - Telefone: ${dados.telefone}
-- Email: ${dados.email}
+- E-mail: ${dados.email}
 
 Observações:
 ${dados.observacoes}
-
-Assinatura:
-- Local/Data: ${dados.local_data}
-- Nome: ${dados.assinatura_nome}
-- Cargo/Função: ${dados.assinatura_cargo}
-- RG: ${dados.assinatura_rg}
         `,
         attachments: arquivos.map(file => ({
             filename: file.originalname,
