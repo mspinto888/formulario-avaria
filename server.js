@@ -3,13 +3,17 @@ const multer = require('multer');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const fs = require('fs');
-const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -27,8 +31,8 @@ const upload = multer({ storage: storage });
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'SEU_EMAIL@gmail.com',
-        pass: 'SUA_SENHA_DE_APLICATIVO'
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
 
@@ -37,10 +41,12 @@ app.post('/submit', upload.array('fotos'), (req, res) => {
     const arquivos = req.files;
 
     const mailOptions = {
-        from: 'SEU_EMAIL@gmail.com',
-        to: 'SEU_EMAIL@gmail.com',
+        from: process.env.EMAIL_USER,
+        to: process.env.EMAIL_USER,
         subject: 'Novo Relatório de Avaria de Arma',
-        text: `Relatório de Avaria
+        text: `
+Relatório de Avaria
+
 Identificação da Arma:
 - Marca: ${dados.marca}
 - Modelo: ${dados.modelo}
@@ -99,5 +105,5 @@ Assinatura:
 });
 
 app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
+    console.log(`Servidor rodando na porta ${port}`);
 });
