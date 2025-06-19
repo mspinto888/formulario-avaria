@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Avaria</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+        input, select, textarea { width: 100%; padding: 8px; margin: 5px 0 15px; }
+        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Relatório de Avaria</h1>
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+        <h3>Identificação da Arma</h3>
+        <input name="marca" placeholder="Marca">
+        <input name="modelo" placeholder="Modelo">
+        <input name="calibre" placeholder="Calibre">
+        <input name="numero_serie" placeholder="Número de Série">
+        <select name="tipo_carga">
+            <option value="">Tipo de Carga</option>
+            <option>Carga pessoal definitiva</option>
+            <option>Carga tática (unidade)</option>
+            <option>Carga de ensino (Acadepol e UEP)</option>
+        </select>
+
+        <h3>Detalhes da Avaria</h3>
+        <input type="date" name="data_constatacao">
+        <input name="local_constatacao" placeholder="Local da Constatação">
+        <textarea name="descricao" placeholder="Descrição Detalhada"></textarea>
+        <textarea name="causa" placeholder="Possível Causa"></textarea>
+        <textarea name="contexto" placeholder="Contexto"></textarea>
+        <select name="municao_recarregada">
+            <option value="">Munição Recarregada?</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+        <textarea name="tipo_municao" placeholder="Tipo e quantidade de munição"></textarea>
+
+        <h3>Evidências Fotográficas</h3>
+        <input type="file" name="fotos" multiple>
+
+        <h3>Manutenção Preventiva</h3>
+        <select name="limpeza">
+            <option value="">Realiza limpeza periódica?</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+        <input name="frequencia" placeholder="Frequência">
+        <textarea name="produtos" placeholder="Produtos e métodos utilizados"></textarea>
+        <input type="date" name="ultima_limpeza">
+
+        <h3>Dados do Policial</h3>
+        <input name="nome" placeholder="Nome Completo">
+        <input name="rg" placeholder="RG">
+        <input name="unidade" placeholder="Unidade">
+        <input name="telefone" placeholder="Telefone">
+        <input type="email" name="email" placeholder="Email Funcional">
+
+        <h3>Observações</h3>
+        <textarea name="observacoes"></textarea>
+
+        <h3>Assinatura</h3>
+        <input name="local_data" placeholder="Local e Data">
+        <input name="assinatura_nome" placeholder="Nome para Assinatura">
+        <input name="assinatura_cargo" placeholder="Cargo/Função">
+        <input name="assinatura_rg" placeholder="RG">
+
+        <button type="submit">Enviar Relatório</button>
+    </form>
+</body>
+</html>
