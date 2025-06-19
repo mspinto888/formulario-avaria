@@ -9,64 +9,62 @@
         input, select, textarea { width: 100%; padding: 8px; margin: 5px 0 15px; }
         button { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; }
         button:hover { background-color: #0056b3; }
+        select:disabled { background-color: #e9ecef; color: #6c757d; }
     </style>
 </head>
 <body>
     <h1>Relatório de Avaria</h1>
     <form action="/submit" method="POST" enctype="multipart/form-data">
+
         <h3>Identificação da Arma</h3>
-        <input name="marca" placeholder="Marca">
-        <input name="modelo" placeholder="Modelo">
-        <input name="calibre" placeholder="Calibre">
-        <input name="numero_serie" placeholder="Número de Série">
-        <select name="tipo_carga">
-            <option value="">Tipo de Carga</option>
-            <option>Carga pessoal definitiva</option>
-            <option>Carga tática (unidade)</option>
-            <option>Carga de ensino (Acadepol e UEP)</option>
+        <input name="marca" placeholder="Ex.: Glock">
+        <input name="modelo" placeholder="Ex.: G19">
+        <input name="calibre" placeholder="Ex.: 9mm">
+        <input name="numero_serie" placeholder="Ex.: BZGC000">
+        <label>Tipo de Carga</label>
+        <select name="tipo_carga" disabled>
+            <option selected>Carga pessoal definitiva</option>
         </select>
 
         <h3>Detalhes da Avaria</h3>
-        <input type="date" name="data_constatacao">
-        <input name="local_constatacao" placeholder="Local da Constatação">
-        <textarea name="descricao" placeholder="Descrição Detalhada"></textarea>
-        <textarea name="causa" placeholder="Possível Causa"></textarea>
-        <textarea name="contexto" placeholder="Contexto"></textarea>
+        <input type="date" name="data_constatacao" placeholder="mm/dd/aaaa">
+        <input name="local_constatacao" placeholder="Ex.: estande de tiro, Academia de Polícia">
+        <textarea name="descricao" placeholder="Ex.: não cicla, não extrai o estojo"></textarea>
+        <textarea name="causa" placeholder="Ex.: percutor quebrado, extrator quebrado"></textarea>
+        <textarea name="contexto" placeholder="Ex.: durante treinamento, durante operação policial"></textarea>
+
+        <label>Munição Recarregada?</label>
         <select name="municao_recarregada">
-            <option value="">Munição Recarregada?</option>
+            <option value="">Selecione</option>
             <option>Sim</option>
             <option>Não</option>
         </select>
-        <textarea name="tipo_municao" placeholder="Tipo e quantidade de munição"></textarea>
+        <textarea name="tipo_municao" placeholder="Ex.: 10 cartuchos, de logística reversa, CBC Lote XXX55"></textarea>
 
         <h3>Evidências Fotográficas</h3>
         <input type="file" name="fotos" multiple>
 
         <h3>Manutenção Preventiva</h3>
+        <label>Realiza limpeza periódica?</label>
         <select name="limpeza">
-            <option value="">Realiza limpeza periódica?</option>
+            <option value="">Selecione</option>
             <option>Sim</option>
             <option>Não</option>
         </select>
-        <input name="frequencia" placeholder="Frequência">
-        <textarea name="produtos" placeholder="Produtos e métodos utilizados"></textarea>
-        <input type="date" name="ultima_limpeza">
+        <input name="frequencia" placeholder="Ex.: semanalmente, mensalmente, só quando dispara">
+        <textarea name="produtos" placeholder="Ex.: CLP, óleo, solvente, escova"></textarea>
+        <input type="date" name="ultima_limpeza" placeholder="dd/mm/aaaa">
 
-        <h3>Dados do Policial</h3>
-        <input name="nome" placeholder="Nome Completo">
+        <h3>Seus Dados Funcionais</h3>
+        <input name="nome" placeholder="Nome completo">
+        <input name="cargo" placeholder="Cargo">
         <input name="rg" placeholder="RG">
-        <input name="unidade" placeholder="Unidade">
-        <input name="telefone" placeholder="Telefone">
-        <input type="email" name="email" placeholder="Email Funcional">
+        <input name="unidade" placeholder="Unidade de classificação">
+        <input name="telefone" placeholder="(XX) XXXX-XXXX">
+        <input type="email" name="email" placeholder="E-mail funcional">
 
         <h3>Observações</h3>
-        <textarea name="observacoes"></textarea>
-
-        <h3>Assinatura</h3>
-        <input name="local_data" placeholder="Local e Data">
-        <input name="assinatura_nome" placeholder="Nome para Assinatura">
-        <input name="assinatura_cargo" placeholder="Cargo/Função">
-        <input name="assinatura_rg" placeholder="RG">
+        <textarea name="observacoes" placeholder="Observações adicionais (opcional)"></textarea>
 
         <button type="submit">Enviar Relatório</button>
     </form>
