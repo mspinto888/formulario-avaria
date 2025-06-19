@@ -7,9 +7,22 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
             padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             margin: auto;
+        }
+        .subtitulo {
+            font-size: 1.7em;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
         input, select, textarea {
             width: 100%;
@@ -38,106 +51,108 @@
 </head>
 <body>
 
-    <h1>Relatório de Avaria</h1>
+    <div class="container">
+        <div class="subtitulo">Setor de Material Bélico - DSD/DAP</div>
+        <h1>Relatório de Avaria</h1>
 
-    <form id="form" action="/submit" method="POST" enctype="multipart/form-data">
+        <form id="form" action="/submit" method="POST" enctype="multipart/form-data">
 
-        <h3>Identificação da Arma</h3>
+            <h3>Identificação da Arma</h3>
 
-        <label>Marca</label>
-        <input name="marca" placeholder="Ex.: Glock" required>
+            <label>Marca</label>
+            <input name="marca" placeholder="Ex.: Glock" required>
 
-        <label>Modelo</label>
-        <input name="modelo" placeholder="Ex.: G19" required>
+            <label>Modelo</label>
+            <input name="modelo" placeholder="Ex.: G19" required>
 
-        <label>Calibre</label>
-        <input name="calibre" placeholder="Ex.: 9mm" required>
+            <label>Calibre</label>
+            <input name="calibre" placeholder="Ex.: 9mm" required>
 
-        <label>Número de série</label>
-        <input name="numero_serie" placeholder="Ex.: BZGC000" required>
+            <label>Número de série</label>
+            <input name="numero_serie" placeholder="Ex.: BZGC000" required>
 
-        <label>Tipo de Carga</label>
-        <select name="tipo_carga" disabled>
-            <option selected>Carga pessoal definitiva</option>
-        </select>
+            <label>Tipo de Carga</label>
+            <select name="tipo_carga" disabled>
+                <option selected>Carga pessoal definitiva</option>
+            </select>
 
-        <h3>Detalhes da Avaria</h3>
+            <h3>Detalhes da Avaria</h3>
 
-        <label>Data da constatação</label>
-        <input type="date" name="data_constatacao" required>
+            <label>Data da constatação</label>
+            <input type="date" name="data_constatacao" required>
 
-        <label>Local da constatação</label>
-        <input name="local_constatacao" placeholder="Ex.: estande de tiro, Academia de Polícia" required>
+            <label>Local da constatação</label>
+            <input name="local_constatacao" placeholder="Ex.: estande de tiro, Academia de Polícia" required>
 
-        <label>Descrição da avaria</label>
-        <textarea name="descricao" placeholder="Ex.: não cicla, não extrai o estojo" required></textarea>
+            <label>Descrição da avaria</label>
+            <textarea name="descricao" placeholder="Ex.: não cicla, não extrai o estojo" required></textarea>
 
-        <label>Possível causa</label>
-        <textarea name="causa" placeholder="Ex.: percutor quebrado, extrator quebrado" required></textarea>
+            <label>Possível causa</label>
+            <textarea name="causa" placeholder="Ex.: percutor quebrado, extrator quebrado" required></textarea>
 
-        <label>Contexto</label>
-        <textarea name="contexto" placeholder="Ex.: durante treinamento, durante operação policial" required></textarea>
+            <label>Contexto</label>
+            <textarea name="contexto" placeholder="Ex.: durante treinamento, durante operação policial" required></textarea>
 
-        <label>Munição Recarregada?</label>
-        <select name="municao_recarregada" required>
-            <option value="">Selecione</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
+            <label>Munição Recarregada?</label>
+            <select name="municao_recarregada" required>
+                <option value="">Selecione</option>
+                <option>Sim</option>
+                <option>Não</option>
+            </select>
 
-        <label>Tipo e quantidade de munição</label>
-        <textarea name="tipo_municao" placeholder="Ex.: 10 cartuchos, de logística reversa, CBC Lote XXX55" required></textarea>
+            <label>Tipo e quantidade de munição</label>
+            <textarea name="tipo_municao" placeholder="Ex.: 10 cartuchos, de logística reversa, CBC Lote XXX55" required></textarea>
 
-        <h3>Evidências Fotográficas</h3>
-        <input type="file" name="fotos" multiple required>
+            <h3>Evidências Fotográficas</h3>
+            <input type="file" name="fotos" multiple>
 
-        <h3>Manutenção Preventiva</h3>
+            <h3>Manutenção Preventiva</h3>
 
-        <label>Realiza limpeza periódica?</label>
-        <select name="limpeza" id="limpeza" required onchange="verificarLimpeza()">
-            <option value="">Selecione</option>
-            <option value="Sim">Sim</option>
-            <option value="Não">Não</option>
-        </select>
+            <label>Realiza limpeza periódica?</label>
+            <select name="limpeza" id="limpeza" required onchange="verificarLimpeza()">
+                <option value="">Selecione</option>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+            </select>
 
-        <label>Com que frequência?</label>
-        <input name="frequencia" id="frequencia" placeholder="Ex.: semanalmente, mensalmente, só quando dispara">
+            <label>Com que frequência?</label>
+            <input name="frequencia" id="frequencia" placeholder="Ex.: semanalmente, mensalmente, só quando dispara">
 
-        <label>Produtos e/ou equipamentos utilizados</label>
-        <textarea name="produtos" id="produtos" placeholder="Ex.: CLP, óleo, solvente, escova"></textarea>
+            <label>Produtos e/ou equipamentos utilizados</label>
+            <textarea name="produtos" id="produtos" placeholder="Ex.: CLP, óleo, solvente, escova"></textarea>
 
-        <label>Data aproximada da última limpeza</label>
-        <input type="date" name="ultima_limpeza" id="ultima_limpeza" placeholder="dd/mm/aaaa">
+            <label>Data aproximada da última limpeza</label>
+            <input type="date" name="ultima_limpeza" id="ultima_limpeza" placeholder="dd/mm/aaaa">
 
-        <h3>Seus Dados Funcionais</h3>
+            <h3>Seus Dados Funcionais</h3>
 
-        <label>Nome completo</label>
-        <input name="nome" placeholder="Nome completo" required>
+            <label>Nome completo</label>
+            <input name="nome" placeholder="Nome completo" required>
 
-        <label>Cargo</label>
-        <input name="cargo" placeholder="Cargo" required>
+            <label>Cargo</label>
+            <input name="cargo" placeholder="Cargo" required>
 
-        <label>RG</label>
-        <input name="rg" placeholder="RG" required>
+            <label>RG</label>
+            <input name="rg" placeholder="RG" required>
 
-        <label>Unidade de classificação</label>
-        <input name="unidade" placeholder="Unidade de classificação" required>
+            <label>Unidade de classificação</label>
+            <input name="unidade" placeholder="Unidade de classificação" required>
 
-        <label>Telefone celular</label>
-        <input name="telefone" id="telefone" placeholder="(XX) XXXX-XXXX" required>
+            <label>Telefone celular</label>
+            <input name="telefone" id="telefone" placeholder="(XX) XXXX-XXXX" required>
 
-        <label>E-mail funcional</label>
-        <input type="email" name="email" placeholder="E-mail funcional" required>
+            <label>E-mail funcional</label>
+            <input type="email" name="email" placeholder="E-mail funcional" required>
 
-        <h3>Observações</h3>
-        <textarea name="observacoes" placeholder="Observações adicionais (opcional)"></textarea>
+            <h3>Observações</h3>
+            <textarea name="observacoes" placeholder="Observações adicionais (opcional)"></textarea>
 
-        <button type="submit">Enviar Relatório</button>
+            <button type="submit">Enviar Relatório</button>
 
-    </form>
+        </form>
+    </div>
 
     <script>
-        // Máscara e validação de telefone
         const telefoneInput = document.getElementById('telefone');
         telefoneInput.addEventListener('input', function (e) {
             let x = e.target.value.replace(/\D/g, '').slice(0, 10);
@@ -147,7 +162,6 @@
             e.target.value = x;
         });
 
-        // Verificar se o telefone está no formato correto antes de enviar
         document.getElementById('form').addEventListener('submit', function(e) {
             const tel = telefoneInput.value;
             const regex = /^\(\d{2}\) \d{4}-\d{4}$/;
@@ -157,11 +171,9 @@
             }
         });
 
-        // Controle dos campos da limpeza
         function verificarLimpeza() {
             const limpeza = document.getElementById('limpeza').value;
             const obrigatorio = (limpeza === 'Sim');
-
             document.getElementById('frequencia').required = obrigatorio;
             document.getElementById('produtos').required = obrigatorio;
             document.getElementById('ultima_limpeza').required = obrigatorio;
