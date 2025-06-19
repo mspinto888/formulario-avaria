@@ -94,7 +94,7 @@ ${dados.observacoes}
             res.status(500).send('Erro no envio do email.');
         } else {
             console.log('Email enviado: ' + info.response);
-            res.send('Relatório enviado com sucesso!');
+            res.redirect('/obrigado.html');
         }
     });
 });
